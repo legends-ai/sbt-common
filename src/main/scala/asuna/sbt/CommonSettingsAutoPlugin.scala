@@ -65,14 +65,7 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
     ),
 
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
-    buildInfoPackage := "buildinfo",
-
-    // remove any non-nop implementation of SLF4J during tests
-    (dependencyClasspath in Test) ~= { cp =>
-      cp.filterNot(_.data.name.contains("slf4j-log4j12"))
-        .filterNot(_.data.name.contains("logback"))
-    }
-
+    buildInfoPackage := "buildinfo"
   )
 
   override def buildSettings = versionWithGit
