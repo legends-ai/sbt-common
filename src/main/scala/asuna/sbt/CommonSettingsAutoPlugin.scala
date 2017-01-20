@@ -12,14 +12,17 @@ import sbtbuildinfo.BuildInfoPlugin.autoImport._
 import sbtdocker.DockerPlugin
 import sbtdocker.DockerPlugin.autoImport._
 
+import com.typesafe.sbt.GitVersioning
+import com.typesafe.sbt.GitPlugin.autoImport.{ git, versionWithGit }
+
 object CommonSettingsAutoPlugin extends AutoPlugin {
   override def trigger = allRequirements
-  override def requires = AssemblyPlugin && BuildInfoPlugin && DockerPlugin
+  override def requires = AssemblyPlugin && BuildInfoPlugin && DockerPlugin && GitVersioning
 
   // Base URL for Docker Repository
   val base = "096202052535.dkr.ecr.us-east-1.amazonaws.com"
 
-  override def projectSettings: Seq[Setting[_]] = Seq(
+  override def projectSettings = Seq(
     organization := "asuna",
 
     scalacOptions ++= Seq(
@@ -29,11 +32,11 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
       "-Xlint"
     ),
 
-    resolvers ++= Seq[Resolver](
-      "Aincrad" at "s3://aincrad.asuna.io"
-    ),
+    resolvers += "Aincrad" at "s3://aincrad.asuna.io",
 
     publishTo := Some("Aincrad" at "s3://aincrad.asuna.io"),
+
+    git.formattedShaVersion := git.gitHeadCommit.value.map(_.toString),
 
     mainClass in assembly := Some(s"asuna.$name.Main"),
     assemblyJarName in assembly := s"$name-assembly.jar",
@@ -71,4 +74,6 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
     }
 
   )
+
+  override def buildSettings = versionWithGit
 }
