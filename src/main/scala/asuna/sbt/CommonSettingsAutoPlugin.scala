@@ -38,8 +38,8 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
 
     git.formattedShaVersion := git.gitHeadCommit.value.map(_.toString),
 
-    mainClass in assembly := Some(s"asuna.$name.Main"),
-    assemblyJarName in assembly := s"$name-assembly.jar",
+    mainClass in assembly := Some(s"asuna.${name.value}.Main"),
+    assemblyJarName in assembly := s"${name.value}-assembly.jar",
     assemblyMergeStrategy in assembly := {
       case x if x.endsWith("io.netty.versions.properties") => MergeStrategy.first
       case x if x contains "publicsuffix" => MergeStrategy.first
