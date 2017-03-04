@@ -32,6 +32,7 @@ object CommonPluginSettingsAutoPlugin extends AutoPlugin {
     mainClass in assembly := Some(s"asuna.${name.value}.Main"),
     assemblyJarName in assembly := s"${name.value}-assembly.jar",
     assemblyMergeStrategy in assembly := {
+      case x if x contains "io.grpc" => MergeStrategy.first
       case PathList("META-INF", xs @ _*) => MergeStrategy.discard
       case x if x.endsWith("io.netty.versions.properties") => MergeStrategy.first
       case x if x contains "publicsuffix" => MergeStrategy.first
