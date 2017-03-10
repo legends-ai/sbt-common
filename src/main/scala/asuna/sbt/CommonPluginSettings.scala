@@ -34,6 +34,7 @@ object CommonPluginSettingsAutoPlugin extends AutoPlugin {
     assemblyMergeStrategy in assembly := {
       case x if x contains "io.grpc" => MergeStrategy.first
       case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+      case x if x.endsWith("BUILD") => MergeStrategy.discard
       case x if x.endsWith("io.netty.versions.properties") => MergeStrategy.first
       case x if x contains "publicsuffix" => MergeStrategy.first
       case x => (assemblyMergeStrategy in assembly).value(x)
