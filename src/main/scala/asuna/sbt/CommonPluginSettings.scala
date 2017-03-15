@@ -24,7 +24,7 @@ object CommonPluginSettingsAutoPlugin extends AutoPlugin {
     GitVersioning
 
   // Base URL for Docker Repository
-  val base = "aincrad-on.azurecr.io"
+  val base = "096202052535.dkr.ecr.us-east-1.amazonaws.com"
 
   override def projectSettings = Seq(
     git.formattedShaVersion := git.gitHeadCommit.value.map(_.toString),
