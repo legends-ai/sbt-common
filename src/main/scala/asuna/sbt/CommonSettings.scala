@@ -16,6 +16,7 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
       "-Xlint"
     ),
 
+    // TODO(igm): migrate to Azure
     resolvers += "Aincrad" at "s3://aincrad.asuna.io",
 
     publishTo := Some("Aincrad" at "s3://aincrad.asuna.io")
