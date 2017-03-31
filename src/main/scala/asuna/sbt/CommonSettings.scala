@@ -18,6 +18,8 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
 
     resolvers += "Aincrad" at "s3://aincrad.asuna.io",
 
+    sources in (Compile, doc) := Seq.empty,
+    publishArtifact in (Compile, packageDoc) := false,
     publishTo := Some("Aincrad" at "s3://aincrad.asuna.io")
   )
 
