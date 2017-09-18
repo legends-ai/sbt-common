@@ -9,11 +9,16 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
   override def projectSettings = Seq(
     organization := "asuna",
 
+    scalaOrganization := "org.typelevel",
+    scalaVersion := "2.12.3-bin-typelevel-4",
+
     scalacOptions ++= Seq(
-      "-encoding", "UTF-8",
+      "-encoding",
+      "UTF-8",
       "-deprecation",
       "-feature",
-      "-Xlint"
+      "-Xlint",
+      "-Ypartial-unification",
     ),
 
     resolvers += "Aincrad" at "s3://aincrad.asuna.io",
