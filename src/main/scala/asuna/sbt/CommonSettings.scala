@@ -18,7 +18,7 @@ object CommonSettingsAutoPlugin extends AutoPlugin {
       "-deprecation",
       "-feature",
       "-Xlint",
-      "-Ypartial-unification",
+      "-Ypartial-unification"
     ),
 
     resolvers += "Aincrad" at "s3://aincrad.asuna.io",
