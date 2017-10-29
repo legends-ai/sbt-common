@@ -1,6 +1,6 @@
 sbtPlugin := true
 name := "sbt-common"
-version := "0.1.13"
+version := "0.1.14"
 
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.5")
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.7.0")
